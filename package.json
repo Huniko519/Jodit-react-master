@@ -1,0 +1,79 @@
+{
+	"name": "jodit-react",
+	"version": "1.2.10",
+	"description": "Jodit is awesome and usefully wysiwyg editor with filebrowser",
+	"main": "build/jodit-react.js",
+	"author": "Chupurnov <chupurnov@gmail.com> (https://xdsoft.net/)s",
+	"keywords": [
+		"react",
+		"jodit",
+		"html",
+		"text",
+		"editor",
+		"wysisyg",
+		"rich editor",
+		"rich text editor",
+		"rte"
+	],
+	"dependencies": {
+		"jodit": "^3.9.4",
+		"jodit-react": "^1.2.10"
+	},
+	"peerDependencies": {
+		"react": "~0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0",
+		"react-dom": "~0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.16.0",
+		"@babel/eslint-parser": "^7.17.0",
+		"@babel/preset-env": "^7.16.0",
+		"@babel/preset-react": "^7.16.0",
+		"@types/react": "^16.14.2",
+		"babel": "^6.23.0",
+		"babel-cli": "^6.26.0",
+		"babel-loader": "^8.2.2",
+		"babel-plugin-transform-class-properties": "^6.24.1",
+		"css-loader": "^3.6.0",
+		"eslint": "^8.9.0",
+		"eslint-config-prettier": "^8.4.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-react": "^7.28.0",
+		"husky": "^7.0.4",
+		"lint-staged": "^12.3.4",
+		"prettier": "^2.5.1",
+		"react": "^16.14.0",
+		"react-dom": "^16.14.0",
+		"style-loader": "^0.20.3",
+		"webpack": "^4.44.2",
+		"webpack-cli": "^3.3.12",
+		"webpack-dev-server": "^3.11.0"
+	},
+	"scripts":{
+		"newversion": "npm run lint && npm update && rm -rf build/ && npm run build && npm version patch --no-git-tag-version && npm run github && npm publish ./",
+		"lint": "eslint ./",
+		"demo": "cd examples && set NODE_ENV=development && webpack-dev-server --config ./webpack.config.js --mode development --port 4000 --hot --inline",
+		"start": "npm run demo",
+		"build": "export NODE_ENV=production && webpack --mode production",
+		"github": "git add --all  && git commit -m \"New version $npm_package_version. Read more https://github.com/jodit/jodit-react/releases/tag/$npm_package_version \" && git tag $npm_package_version && git push --tags origin HEAD:master"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jodit/jodit-react.git"
+	},
+	"license": "Blockchain Developer",
+	"bugs": {
+		"url": "https://github.com/jodit/jodit-react/issues"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"**/*.js": [
+			"eslint ./ --fix",
+			"git add"
+		]
+	},
+	"homepage": ""
+}
